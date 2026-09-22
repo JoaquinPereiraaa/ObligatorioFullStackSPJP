@@ -8,3 +8,7 @@ export const createCategoriaService = async (data) => {
 export const getCategoriasService = async () => {
   return await Categoria.find();
 };
+
+export const getCategoriaByIdService = async (id) => {
+  return await Categoria.findById(id);
+};

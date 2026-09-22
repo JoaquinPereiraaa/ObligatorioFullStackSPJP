@@ -1,7 +1,10 @@
 import {
   createCategoriaService,
-  getCategoriasService
+  getCategoriasService,
+  getCategoriaByIdService
 } from "../services/categoria.services.js";
+
+import mongoose from "mongoose";
 
 export const createCategoria = async (req, res, next) => {
   try {
@@ -18,6 +21,29 @@ export const getCategorias = async (req, res, next) => {
     const categorias = await getCategoriasService();
 
     return res.status(200).json(categorias);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+export const getCategoriaById = async (req, res, next) => {
+  try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+  return res.status(400).json({
+    message: "ID de categoria invalido"
+      });
+    }
+
+
+    const categoria = await getCategoriaByIdService(req.params.id);
+
+    if (!categoria) {
+      return res.status(404).json({
+        message: "Categoria no encontrada"
+      });
+    }
+
+    return res.status(200).json(categoria);
   } catch (error) {
     return next(error);
   }
