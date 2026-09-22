@@ -1,5 +1,6 @@
 import express from 'express';
 import authRouter from './routes/auth.routes.js';
+import categoriaRouter from './routes/categoria.routes.js';
 import { authenticateMiddleware } from './middlewares/authenticate.middleware.js';
 
 
@@ -14,6 +15,7 @@ router.use('/auth', authRouter);
 router.use(authenticateMiddleware);
 //Rutas protegidas
 
+router.use('/categorias', categoriaRouter);
 
 
  export default router;
