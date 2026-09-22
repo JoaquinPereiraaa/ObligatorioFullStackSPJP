@@ -5,3 +5,6 @@ export const createCategoriaService = async (data) => {
   return await categoria.save();
 };
 
+export const getCategoriasService = async () => {
+  return await Categoria.find();
+};
