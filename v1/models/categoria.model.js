@@ -9,6 +9,10 @@ const categoriaSchema = new mongoose.Schema({
   descripcion: {
     type: String,
     required: true
+  },
+  activo: {
+    type: Boolean,
+    default: true
   }
 });
 

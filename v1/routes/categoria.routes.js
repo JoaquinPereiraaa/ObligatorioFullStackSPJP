@@ -4,7 +4,8 @@ import {
   createCategoria,
   getCategorias,
   getCategoriaById,
-  updateCategoria
+  updateCategoria,
+  deleteCategoria
 } from "../controllers/categoria.controller.js";
 
 import {
@@ -20,6 +21,7 @@ router.post("/", validateBodyMiddleware(createCategoriaSchema), createCategoria)
 router.put("/:id", validateBodyMiddleware(updateCategoriaSchema), updateCategoria);
 router.get("/", getCategorias);
 router.get("/:id", getCategoriaById);
+router.delete("/:id", deleteCategoria);
 
 export default router;
 
