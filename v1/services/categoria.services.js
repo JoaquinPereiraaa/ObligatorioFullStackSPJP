@@ -7,11 +7,16 @@ export const createCategoriaService = async (data) => {
 };
 
 export const getCategoriasService = async () => {
-  return await Categoria.find();
+  return await Categoria.find({
+    activo: { $ne: false }
+  });
 };
 
 export const getCategoriaByIdService = async (id) => {
-  return await Categoria.findById(id);
+  return await Categoria.findOne({
+    _id: id,
+    activo: { $ne: false }
+  });
 };
 
 export const updateCategoriaService = async (id, data) => {
