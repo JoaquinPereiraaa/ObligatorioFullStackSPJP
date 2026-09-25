@@ -4,10 +4,11 @@ import categoriaRouter from './routes/categoria.routes.js';
 import aplicacionTrabajoRouter from "./routes/aplicacionTrabajo.routes.js";
 import userRouter from "./routes/user.routes.js";
 import { authenticateMiddleware } from './middlewares/authenticate.middleware.js';
+import uploadsRoutes from "./routes/uploads.routes.js";
 
 
 
- const router = express.Router({mergeParams: true});
+const router = express.Router({mergeParams: true});
 
 //Rutas públicas Login y Registro
 router.use('/auth', authRouter);
@@ -20,4 +21,5 @@ router.use(authenticateMiddleware);
 router.use('/categorias', categoriaRouter);
 router.use("/aplicaciones-trabajo", aplicacionTrabajoRouter);
 router.use("/usuarios", userRouter);
+router.use("/uploads", uploadsRoutes);
  export default router;
