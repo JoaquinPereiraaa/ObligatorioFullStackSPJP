@@ -5,6 +5,7 @@ import aplicacionTrabajoRouter from "./routes/aplicacionTrabajo.routes.js";
 import userRouter from "./routes/user.routes.js";
 import { authenticateMiddleware } from './middlewares/authenticate.middleware.js';
 import uploadsRoutes from "./routes/uploads.routes.js";
+import groqRouter from "./routes/groq.routes.js";
 
 
 
@@ -22,4 +23,6 @@ router.use('/categorias', categoriaRouter);
 router.use("/aplicaciones-trabajo", aplicacionTrabajoRouter);
 router.use("/usuarios", userRouter);
 router.use("/uploads", uploadsRoutes);
- export default router;
+router.use("/ia", groqRouter);
+
+export default router;
