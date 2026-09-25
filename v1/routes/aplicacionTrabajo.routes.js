@@ -1,11 +1,16 @@
 import express from "express";
 
 import {
-  createAplicacionTrabajo
+  createAplicacionTrabajo,
+  getAplicacionesTrabajo,
+  getAplicacionTrabajoById,
+  updateAplicacionTrabajo,
+  deleteAplicacionTrabajo
 } from "../controllers/aplicacionTrabajo.controller.js";
 
 import {
-  createAplicacionTrabajoSchema
+  createAplicacionTrabajoSchema,
+  updateAplicacionTrabajoSchema   
 } from "../validators/aplicacionTrabajo.validators.js";
 
 import {
@@ -20,6 +25,27 @@ router.post(
   "/",
   validateBodyMiddleware(createAplicacionTrabajoSchema),
   createAplicacionTrabajo
+);
+
+router.get(
+  "/",
+  getAplicacionesTrabajo
+);
+
+router.get(
+  "/:id",
+  getAplicacionTrabajoById
+);
+
+router.put(
+  "/:id",
+  validateBodyMiddleware(updateAplicacionTrabajoSchema),
+  updateAplicacionTrabajo
+);
+
+router.delete(
+  "/:id",
+  deleteAplicacionTrabajo
 );
 
 export default router;

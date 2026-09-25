@@ -20,3 +20,60 @@ export const createAplicacionTrabajoService = async (
 
   return aplicacion;
 };
+
+export const getAplicacionesTrabajoService = async (usuarioId) => {
+  return await AplicacionTrabajo.find({
+    usuario: usuarioId
+  }).populate("categoria");
+};
+
+export const getAplicacionTrabajoByIdService = async (
+  id,
+  usuarioId 
+) => {
+  return await AplicacionTrabajo.findOne({
+    _id: id,
+    usuario: usuarioId
+  }).populate("categoria");
+};
+
+export const updateAplicacionTrabajoService = async (
+  id,
+  usuarioId,
+  data
+) => {
+  if (data.categoria) {
+    const categoria = await Categoria.findOne({
+      _id: data.categoria,
+      activo: { $ne: false }
+    });
+
+    if (!categoria) {
+      const error = new Error("Categoria no encontrada");
+      error.status = 404;
+      throw error;
+    }
+  }
+
+  return await AplicacionTrabajo.findOneAndUpdate(
+    {
+      _id: id,
+      usuario: usuarioId
+    },
+    data,
+    {
+      new: true,
+      runValidators: true
+    }
+  ).populate("categoria");
+};
+
+export const deleteAplicacionTrabajoService = async (
+  id,
+  usuarioId
+) => {
+  return await AplicacionTrabajo.findOneAndDelete({
+    _id: id,
+    usuario: usuarioId
+  });
+};
