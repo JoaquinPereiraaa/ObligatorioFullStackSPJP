@@ -2,6 +2,7 @@ import express from 'express';
 import authRouter from './routes/auth.routes.js';
 import categoriaRouter from './routes/categoria.routes.js';
 import aplicacionTrabajoRouter from "./routes/aplicacionTrabajo.routes.js";
+import userRouter from "./routes/user.routes.js";
 import { authenticateMiddleware } from './middlewares/authenticate.middleware.js';
 
 
@@ -18,5 +19,5 @@ router.use(authenticateMiddleware);
 
 router.use('/categorias', categoriaRouter);
 router.use("/aplicaciones-trabajo", aplicacionTrabajoRouter);
-
+router.use("/usuarios", userRouter);
  export default router;

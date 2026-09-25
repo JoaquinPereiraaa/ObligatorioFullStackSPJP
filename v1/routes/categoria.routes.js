@@ -13,15 +13,16 @@ import {
   updateCategoriaSchema
 } from "../validators/categoria.validators.js";
 
+import { roleMiddleware } from "../middlewares/rol.middleware.js";
 import {validateBodyMiddleware} from "../middlewares/validateBody.middleware.js";
 
 const router = express.Router({mergeParams: true});
 
-router.post("/", validateBodyMiddleware(createCategoriaSchema), createCategoria);
-router.put("/:id", validateBodyMiddleware(updateCategoriaSchema), updateCategoria);
+router.post("/", roleMiddleware("admin"), validateBodyMiddleware(createCategoriaSchema), createCategoria);
+router.put("/:id", roleMiddleware("admin"), validateBodyMiddleware(updateCategoriaSchema), updateCategoria);
 router.get("/", getCategorias);
 router.get("/:id", getCategoriaById);
-router.delete("/:id", deleteCategoria);
+router.delete("/:id", roleMiddleware("admin"), deleteCategoria);
 
 export default router;
 
