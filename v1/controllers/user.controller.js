@@ -2,11 +2,7 @@ import {
   updatePlanService
 } from "../services/user.services.js";
 
-export const updatePlan = async (
-  req,
-  res,
-  next
-) => {
+export const updatePlan = async (req, res, next) => {
   try {
     const usuario = await updatePlanService(
       req.user.id

@@ -25,7 +25,7 @@ export const createAplicacionTrabajo = async (req, res, next) => {
 export const getAplicacionesTrabajo = async (req, res,next) => {
   try {
     const aplicaciones =
-      await getAplicacionesTrabajoService(req.user.id);
+      await getAplicacionesTrabajoService(req.user.id, req.validatedQuery);
 
     return res.status(200).json(aplicaciones);
   } catch (error) {

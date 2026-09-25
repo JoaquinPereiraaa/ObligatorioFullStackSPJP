@@ -10,12 +10,15 @@ import {
 
 import {
   createAplicacionTrabajoSchema,
-  updateAplicacionTrabajoSchema   
+  updateAplicacionTrabajoSchema,
+  getAplicacionesByUsuarioSchema
 } from "../validators/aplicacionTrabajo.validators.js";
 
 import {
   validateBodyMiddleware
 } from "../middlewares/validateBody.middleware.js";
+
+import { validateQueryMiddleware } from "../middlewares/validateQuery.middleware.js";
 
 const router = express.Router({
   mergeParams: true
@@ -29,6 +32,7 @@ router.post(
 
 router.get(
   "/",
+  validateQueryMiddleware(getAplicacionesByUsuarioSchema),
   getAplicacionesTrabajo
 );
 

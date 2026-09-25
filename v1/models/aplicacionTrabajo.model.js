@@ -37,6 +37,11 @@ const aplicacionTrabajoSchema = new mongoose.Schema(
       default: "pendiente"
     },
 
+    fechaAplicacion: {
+      type: Date,
+      default: Date.now
+    },
+
     notas: {
       type: String,
       default: ""

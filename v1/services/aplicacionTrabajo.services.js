@@ -48,10 +48,45 @@ export const createAplicacionTrabajoService = async (
   return aplicacion;
 };
 
-export const getAplicacionesTrabajoService = async (usuarioId) => {
-  return await AplicacionTrabajo.find({
-    usuario: usuarioId
-  }).populate("categoria");
+export const getAplicacionesTrabajoService = async (usuarioId, filtros) => {
+  const{page, limit, estado, categoria, fechaDesde, fechaHasta} = filtros;
+
+  const query = { usuario: usuarioId };
+
+  if (estado) {
+    query.estado = estado;
+  }
+
+  if (categoria) {
+    query.categoria = categoria;
+  }
+
+  if (fechaDesde || fechaHasta) {
+  query.fechaAplicacion = {};
+
+  if (fechaDesde) {
+    query.fechaAplicacion.$gte = new Date(fechaDesde);
+  }
+
+  if (fechaHasta) {
+    const hasta = new Date(fechaHasta);
+
+    hasta.setHours(23, 59, 59, 999);
+
+    query.fechaAplicacion.$lte = hasta;
+  }
+}
+
+  const skip = (page - 1) * limit;
+  const aplicaciones = await AplicacionTrabajo.find(query)
+  .populate("categoria")
+  .sort({ fechaAplicacion: -1 })
+  .skip(skip)
+  .limit(limit);
+
+  const total = await AplicacionTrabajo.countDocuments(query);
+
+  return {aplicaciones, paginacion: {page, limit, total, totalPages: Math.ceil(total / limit)}};
 };
 
 export const getAplicacionTrabajoByIdService = async (
