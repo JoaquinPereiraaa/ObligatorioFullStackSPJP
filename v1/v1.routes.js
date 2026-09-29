@@ -6,7 +6,7 @@ import userRouter from "./routes/user.routes.js";
 import { authenticateMiddleware } from './middlewares/authenticate.middleware.js';
 import uploadsRoutes from "./routes/uploads.routes.js";
 import groqRouter from "./routes/groq.routes.js";
-
+import ofertasRouter from "./routes/oferta.routes.js";
 
 
 const router = express.Router({mergeParams: true});
@@ -24,5 +24,6 @@ router.use("/aplicaciones-trabajo", aplicacionTrabajoRouter);
 router.use("/usuarios", userRouter);
 router.use("/uploads", uploadsRoutes);
 router.use("/ia", groqRouter);
+router.use("/ofertas", ofertasRouter);
 
 export default router;
