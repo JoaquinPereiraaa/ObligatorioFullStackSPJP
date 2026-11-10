@@ -1,9 +1,5 @@
 import multer from "multer";
 
-import {
-  updatePlanService,
-  updateFotoPerfilService
-} from "../services/user.services.js";
 
 import {
   updatePlanService,
