@@ -42,7 +42,8 @@ export const loginService = async (username, password) => {
       id: usuario._id,
       username: usuario.username,
       role: usuario.role,
-      plan: usuario.plan
+      plan: usuario.plan,
+      fotoPerfil: usuario.fotoPerfil || ""
     },
     token
   };
@@ -74,7 +75,8 @@ export const registerService = async (username, password) => {
       id: usuario._id,
       username: usuario.username,
       role: usuario.role,
-      plan: usuario.plan
+      plan: usuario.plan,
+      fotoPerfil: usuario.fotoPerfil || ""
     },
     token
   };

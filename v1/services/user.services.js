@@ -24,3 +24,18 @@ export const updatePlanService = async (usuarioId) => {
 
   return usuario;
 };
+export const updateFotoPerfilService = async (usuarioId, fotoPerfil) => {
+  const usuario = await Usuario.findByIdAndUpdate(
+    usuarioId,
+    { fotoPerfil },
+    { new: true, runValidators: true }
+  );
+
+  if (!usuario) {
+    const error = new Error("Usuario no encontrado");
+    error.status = 404;
+    throw error;
+  }
+
+  return usuario;
+};

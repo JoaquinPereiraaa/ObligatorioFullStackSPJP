@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 
 const usuarioSchema = new mongoose.Schema(
@@ -24,6 +25,11 @@ const usuarioSchema = new mongoose.Schema(
       type: String,
       enum: ["user", "admin"],
       default: "user"
+    },
+
+    fotoPerfil: {
+      type: String,
+      default: ""
     }
   },
   {
