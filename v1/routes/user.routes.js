@@ -2,7 +2,8 @@ import express from "express";
 
 import {
   updatePlan,
-  updateFotoPerfil
+  updateFotoPerfil,
+  getUsuarioActual
 } from "../controllers/user.controller.js";
 
 import {
@@ -17,14 +18,11 @@ import {
   roleMiddleware
 } from "../middlewares/rol.middleware.js";
 
-import {
-  updatePlan,
-  updateFotoPerfil,
-  getUsuarioActual
-} from "../controllers/user.controller.js";
 const router = express.Router();
 
+// Obtener datos del usuario autenticado
 router.get("/me", getUsuarioActual);
+
 // Actualizar plan Plus a Premium
 router.put(
   "/plan",
