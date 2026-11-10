@@ -1,7 +1,8 @@
 import express from "express";
 
 import {
-  updatePlan
+  updatePlan,
+  updateFotoPerfil
 } from "../controllers/user.controller.js";
 
 import {
@@ -18,11 +19,19 @@ import {
 
 const router = express.Router();
 
+// Actualizar plan Plus a Premium
 router.put(
   "/plan",
   roleMiddleware("user", "admin"),
   validateBodyMiddleware(updatePlanSchema),
   updatePlan
+);
+
+// Actualizar foto de perfil con Cloudinary
+router.put(
+  "/foto-perfil",
+  roleMiddleware("user", "admin"),
+  updateFotoPerfil
 );
 
 export default router;
