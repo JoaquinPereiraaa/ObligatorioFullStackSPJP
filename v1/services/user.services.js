@@ -39,3 +39,23 @@ export const updateFotoPerfilService = async (usuarioId, fotoPerfil) => {
 
   return usuario;
 };
+
+
+export const getUsuarioActualService = async (usuarioId) => {
+  const usuario = await Usuario.findById(usuarioId)
+    .select("username role plan fotoPerfil");
+
+  if (!usuario) {
+    const error = new Error("Usuario no encontrado");
+    error.status = 404;
+    throw error;
+  }
+
+  return {
+    id: usuario._id,
+    username: usuario.username,
+    role: usuario.role,
+    plan: usuario.plan,
+    fotoPerfil: usuario.fotoPerfil || ""
+  };
+};

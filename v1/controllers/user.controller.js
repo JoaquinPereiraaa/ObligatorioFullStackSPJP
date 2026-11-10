@@ -5,6 +5,12 @@ import {
   updateFotoPerfilService
 } from "../services/user.services.js";
 
+import {
+  updatePlanService,
+  updateFotoPerfilService,
+  getUsuarioActualService
+} from "../services/user.services.js";
+
 import { uploadFotoPerfil } from "../middlewares/fotoPerfil.middleware.js";
 import { runMulterSingle } from "../utils/multer.util.js";
 import { uploadBufferToCloudinary } from "../utils/cloudinary.util.js";
@@ -73,6 +79,18 @@ export const updateFotoPerfil = async (req, res, next) => {
       });
     }
 
+    return next(error);
+  }
+};
+
+export const getUsuarioActual = async (req, res, next) => {
+  try {
+    const usuario = await getUsuarioActualService(req.user.id);
+
+    return res.status(200).json({
+      usuario
+    });
+  } catch (error) {
     return next(error);
   }
 };

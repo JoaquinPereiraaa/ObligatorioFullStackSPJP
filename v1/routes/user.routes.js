@@ -17,8 +17,14 @@ import {
   roleMiddleware
 } from "../middlewares/rol.middleware.js";
 
+import {
+  updatePlan,
+  updateFotoPerfil,
+  getUsuarioActual
+} from "../controllers/user.controller.js";
 const router = express.Router();
 
+router.get("/me", getUsuarioActual);
 // Actualizar plan Plus a Premium
 router.put(
   "/plan",
