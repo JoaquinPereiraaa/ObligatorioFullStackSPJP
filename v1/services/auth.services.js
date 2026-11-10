@@ -37,16 +37,7 @@ export const loginService = async (username, password) => {
 
   const token = generateToken(usuario);
 
-  return {
-    usuario: {
-      id: usuario._id,
-      username: usuario.username,
-      role: usuario.role,
-      plan: usuario.plan,
-      fotoPerfil: usuario.fotoPerfil || ""
-    },
-    token
-  };
+  return { token };
 };
 
 export const registerService = async (username, password) => {
@@ -70,14 +61,5 @@ export const registerService = async (username, password) => {
 
   const token = generateToken(usuario);
 
-  return {
-    usuario: {
-      id: usuario._id,
-      username: usuario.username,
-      role: usuario.role,
-      plan: usuario.plan,
-      fotoPerfil: usuario.fotoPerfil || ""
-    },
-    token
-  };
+  return { token };
 };
